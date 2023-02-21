@@ -10,7 +10,7 @@ if [ $machine = "Black" ]; then
     echo " Found"
     gpiopins="P8_41 P8_42 P8_43 P8_44 P8_45 P8_46"
     prupins="P9_28 P9_92 P9_27 P9_91 P9_29 P9_30 P9_31"
-    gpionums="70 71 72 73 74 75"
+    gpionums="70 71 72 73 74 75 110 111 112 113 114 115 116"
 elif [ $machine = "Blue" ]; then
     echo " Found"
     pins=""
@@ -24,7 +24,11 @@ else
     echo " Not Found"
     pins=""
 fi
-
+for number in $gpionums
+do 
+    echo $number
+    echo out > /sys/class/gpio/gpio$number/direction
+done
 for pin in $prupins
 do
     echo $pin
@@ -39,9 +43,4 @@ do
     echo $pin
     config-pin $pin gpio
     config-pin -q $pin
-done
-for number in $gpionums
-do 
-    echo $number
-    echo out > /sys/class/gpio/gpio$number/direction
 done
