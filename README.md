@@ -1,11 +1,14 @@
 # bone-audio-display
-takes audio input and displays it using an adafruit display
+takes audio input and displays it using an adafruit display. 
 
 ## install and operation
 install.sh will install smbus and numpy, which are required to run the code. The main code is in main.py, with some other files that may help troubleshoot issues in the other folders. 
 to run, just run ./main.py , and use ctrl-c to stop. 
 
 The way it works is by using the industrial io system on the beaglebone to generate a 96kHz audio signal, making a 481-point FFT of it with numpy, then splitting that FFT into a number of buckets according to the display width. The relative magnitude of the highest point in each bucket to the minimum and maximum determines its height, and that height relative to the display maximum height determines its color. 
+
+## other sites
+This project is also on hackster.io as [audio spectrum display](https://www.hackster.io/donald-hau/beagleboard-audio-spectrum-display-6a0568) and elinux.org as [audio spectrum display](https://elinux.org/ECE434_Project_-_Audio_Spectrum_Display). Check those out for more info.
 
 ## audio input
 
